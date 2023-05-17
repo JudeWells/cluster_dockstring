@@ -25,6 +25,7 @@ if __name__ == "__main__":
             smiles, lig_id = line.split()
         working_directory = f"/SAN/orengolab/nsp13/dude/outputs_dockstring/{args.target}/{args.active_decoy}/{lig_id}/"
         os.makedirs(working_directory, exist_ok=True)
+        print(smiles)
         target = load_target(args.target, working_dir=working_directory)
         score, _ = target.dock(smiles)
         print(f"Docking was successful, score={score:.3g}. END OF SCRIPT.")
