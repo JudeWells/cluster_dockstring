@@ -18,6 +18,9 @@ extra_args="${@:2}"  # e.g. batch size
 
 hostname
 date
+which conda
+conda deactivate
+conda init bash
 conda activate dockstring
 cd /SAN/orengolab/nsp13/dude/cluster_dockstring
 # UPDATE FOR YOUR ENVIRONMENT
