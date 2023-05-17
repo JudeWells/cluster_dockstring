@@ -21,5 +21,6 @@ date
 conda activate dockstring
 cd /SAN/orengolab/nsp13/dude/cluster_dockstring
 # UPDATE FOR YOUR ENVIRONMENT
-/SAN/orengolab/nsp13/.conda/envs/dockstring/bin/python vina_dock_ligand.py --task_index ${SGE_TASK_ID} --smiles_file dude_data/selected_dude/drd3/actives_final.ism --target drd3 --active_decoy active
+which python
+/SAN/orengolab/nsp13/.conda/envs/dockstring/bin/python batch_run_dockstring.py --task_index ${SGE_TASK_ID} --smiles_file dude_data/selected_dude/drd3/actives_final.ism --target DRD3 --active_decoy active
 date
