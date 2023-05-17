@@ -1,7 +1,7 @@
 #!/bin/bash
 #$ -l tmem=3.9G
 #$ -l h_vmem=3.9G
-#$ -l h_rt=00:54:00
+#$ -l h_rt=02:54:00
 #$ -S /bin/bash
 #$ -N dude
 #$ -t 1-5

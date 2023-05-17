@@ -15,7 +15,7 @@ if __name__ == "__main__":
     parser.add_argument("--active_decoy", type=str)
     parser.add_argument("--smiles_file", type=str)
     args = parser.parse_args()
-    batch_size = 100
+    batch_size = 300
     task_index = args.task_index - 1
     with open(args.smiles_file, "r") as f:
         smiles_lines = f.readlines()[task_index*batch_size:(task_index+1)*batch_size]
