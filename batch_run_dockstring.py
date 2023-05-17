@@ -1,4 +1,5 @@
 import os
+import time
 import sys
 import argparse
 sys.path.append('/SAN/orengolab/nsp13/dude/dockstring')
@@ -19,6 +20,7 @@ if __name__ == "__main__":
     with open(args.smiles_file, "r") as f:
         smiles_lines = f.readlines()[task_index*batch_size:(task_index+1)*batch_size]
     for i, line in enumerate(smiles_lines):
+        start = time.time()
         try:
             if args.active_decoy == "active":
                 smiles, _, lig_id = line.split()
@@ -29,7 +31,7 @@ if __name__ == "__main__":
             print(smiles)
             target = load_target(args.target, working_dir=working_directory)
             score, _ = target.dock(smiles)
-            print(f"Docking was successful, score={score:.3g}. END OF SCRIPT.")
+            print(f"Docking was successful, score={score:.3g}. time={round(time.time()-start, 1)}s.")
         except Exception as e:
             print(f"Docking failed with error: {e}")
             continue
