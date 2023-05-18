@@ -2,6 +2,7 @@ import os
 import time
 import sys
 import argparse
+import shutil
 sys.path.append('/SAN/orengolab/nsp13/dude/dockstring')
 
 from dockstring import load_target
@@ -26,14 +27,17 @@ if __name__ == "__main__":
                 smiles, _, lig_id = line.split()
             else:
                 smiles, lig_id = line.split()
-            working_directory = f"/SAN/orengolab/nsp13/dude/outputs_dockstring/{args.target}/{args.active_decoy}/{lig_id}/"
+            working_directory = f"/SAN/orengolab/nsp13/dude/outputs_dockstring/{args.target}/{args.active_decoy}/{task_index}/{lig_id}/"
             os.makedirs(working_directory, exist_ok=True)
             print(smiles)
             target = load_target(args.target, working_dir=working_directory)
             score, _ = target.dock(smiles)
             print(f"Docking was successful, score={score:.3g}. time={round(time.time()-start, 1)}s.")
-            for fname in ['ligand.mol'  'ligand.pdbqt',  'vina.log']:
+            for fname in ['ligand.mol',  'vina.log', 'vina.out', 'ligand.pdbqt']:
                 os.remove(os.path.join(working_directory, fname))
         except Exception as e:
             print(f"Docking failed with error: {e}")
             continue
+    directory_path = f"/SAN/orengolab/nsp13/dude/outputs_dockstring/{args.target}/{args.active_decoy}/{task_index}/"
+    shutil.make_archive(directory_path, 'zip', directory_path)
+    shutil.rmtree(directory_path)
