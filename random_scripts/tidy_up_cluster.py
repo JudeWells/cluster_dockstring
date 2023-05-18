@@ -11,6 +11,7 @@ for target in targets:
             os.makedirs(new_working_directory, exist_ok=True)
             with open(smiles_file, "r") as f:
                 smiles_lines = f.readlines()[task_index * batch_size:(task_index + 1) * batch_size]
+                print("loaded smiles file")
                 for i, line in enumerate(smiles_lines):
                     if ac == "active":
                         smiles, _, lig_id = line.split()
