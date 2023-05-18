@@ -1,5 +1,7 @@
 import os
 import shutil
+import sys
+sys.path.append('/SAN/orengolab/nsp13/dude/dockstring')
 from random_scripts.generate_submit_scripts import get_last_task_index
 batch_size = 300
 targets = ["drd3", "esr1", "esr2", 'egfr', 'gcr', 'src']
