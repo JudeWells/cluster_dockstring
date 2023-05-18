@@ -29,7 +29,7 @@ for target in targets:
                             pass
                     try:
                         shutil.move(old_working_directory, new_working_directory)
-                    except FileNotFoundError:
+                    except:
                         pass
                 print("moved this many files:", len(os.listdir(new_working_directory)))
                 shutil.make_archive(new_working_directory, 'zip', new_working_directory)
