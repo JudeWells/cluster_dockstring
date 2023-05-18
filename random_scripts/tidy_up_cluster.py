@@ -6,10 +6,11 @@ from random_scripts.generate_submit_scripts import get_last_task_index
 batch_size = 300
 targets = ["drd3", "esr1", "esr2", 'egfr', 'gcr', 'src']
 for target in targets:
+    target = target.upper()
     for ac in ["active", "decoy"]:
         smiles_file = f"dude_data/selected_dude/{target.lower()}/{ac}s_final.ism"
         for task_index in range(0, get_last_task_index(target, ac)+1):
-            new_working_directory = f"/SAN/orengolab/nsp13/dude/outputs_dockstring/{target}/{ac}/{task_index}/"
+            new_working_directory = f"/SAN/orengolab/nsp13/dude/outputs_dockstring/{target.upper()}/{ac}/{task_index}/"
             os.makedirs(new_working_directory, exist_ok=True)
             with open(smiles_file, "r") as f:
                 smiles_lines = f.readlines()[task_index * batch_size:(task_index + 1) * batch_size]
