@@ -27,7 +27,10 @@ for target in targets:
                             os.remove(os.path.join(old_working_directory, fname))
                         except FileNotFoundError:
                             pass
-                    shutil.move(old_working_directory, new_working_directory)
+                    try:
+                        shutil.move(old_working_directory, new_working_directory)
+                    except FileNotFoundError:
+                        pass
                 print("moved this many files:", len(os.listdir(new_working_directory)))
                 shutil.make_archive(new_working_directory, 'zip', new_working_directory)
                 shutil.rmtree(new_working_directory)
