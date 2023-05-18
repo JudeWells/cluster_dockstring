@@ -32,6 +32,8 @@ if __name__ == "__main__":
             target = load_target(args.target, working_dir=working_directory)
             score, _ = target.dock(smiles)
             print(f"Docking was successful, score={score:.3g}. time={round(time.time()-start, 1)}s.")
+            for fname in ['ligand.mol'  'ligand.pdbqt',  'vina.log']:
+                os.remove(os.path.join(working_directory, fname))
         except Exception as e:
             print(f"Docking failed with error: {e}")
             continue
